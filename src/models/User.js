@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema(
         _id: {type: Number},
         name: {type: String, required: true},
         cpf: {type: String, required: true},
-        bithDate: {type: Date}, required: true,
+        bithDate: {type: Date, required: true},
         email: {type: String, required: true},
         address: {type: String, required: true},
         number: {type: String, required: true},
