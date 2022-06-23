@@ -32,7 +32,7 @@ class UserController {
             {
                 res.status(500).send({message : `${err.message} - failure to register user`})
             } else {
-                res.status(201).send(user.toJson());
+                res.status(201).send({message: 'Usuário Registrado com sucesso'});
             }
         });
     }

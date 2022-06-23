@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
     {
-        _id: {type: Number},
         name: {type: String, required: true},
         cpf: {type: String, required: true},
         birthDate: {type: Date, required: true},
