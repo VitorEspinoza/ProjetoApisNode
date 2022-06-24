@@ -1,21 +1,28 @@
 
-import users from "../models/User.js";
+import Users from "../models/User.js";
 
 class UserController {
     static getUsers = (req, res) => {
-            const page = req.query.page;
-            const quantPage = req.query.quantPage;
+            const page = req.query.page || 1;
+            const perPage = 2;
+            Users.find()
+            .skip((page * perPage) - perPage)
+            .limit(perPage).exec(function(err, users) {
+                Users.count().exec(function(err, count) {
+                    res.status(200).send({
+                        users: users,
+                        page: page,
+                        pages: count / perPage,
+                        totalRecords: count
+                    })
+                })
+            })
 
-            users.find((err, users))
-            .skip(page * quantPage)
-            .get(quantPage);
-            
-            res.status(200).send(users)
     }
 
     static getUsersById = (req, res) => {
         const {id} = req.params;
-        users.findById(id, (err, users)=> {
+        Users.findById(id, (err, users)=> {
             if(err){
                 res.status(404).send({message: `${err.message} - User not found`})
             }  
@@ -26,7 +33,7 @@ class UserController {
     }
 
     static addUser = (req, res) => {
-        let user = new users(req.body);
+        let user = new Users(req.body);
         user.save((err) => {
             if(err)
             {
@@ -39,7 +46,7 @@ class UserController {
 
     static updateUser = (req, res) => {
         const {id} = req.params;
-        users.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+        Users.findByIdAndUpdate(id, {$set: req.body}, (err) => {
             if(err)
             {
                 res.status(404).send({message: `${err.message} - User not found`})
@@ -52,7 +59,7 @@ class UserController {
 
     static deleteUser = (req, res) => {
         const {id} = req.params;
-        users.findByIdAndDelete(id, (err) => {
+        Users.findByIdAndDelete(id, (err) => {
             if (err) {
                 res.status(500).send({message: `${err.message} - User not found`})
             } 
