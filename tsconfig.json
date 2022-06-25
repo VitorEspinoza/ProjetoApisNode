@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "outDir": "./src/frontend/dist/services",
+        "target": "ES6"
+    },
+    "include": ["./src/frontend/**/*"]
+}
