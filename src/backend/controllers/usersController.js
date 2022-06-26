@@ -23,6 +23,7 @@ class UserController {
 
     static getUsersById = (req, res) => {
         const {id} = req.params;
+        res.set({'Access-Control-Allow-Origin': '*'})
         Users.findById(id, (err, users)=> {
             if(err){
                 res.status(404).send({message: `${err.message} - User not found`})

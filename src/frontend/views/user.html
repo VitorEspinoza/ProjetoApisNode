@@ -22,7 +22,7 @@
             <label for="">birthdate</label>
             <input type="date" name="" id="birthdate" required>
         </div>
-        
+
         <div style="margin:0 auto;">
             <label for="">email</label>
             <input type="text" name="" id="email" required>
@@ -66,16 +66,30 @@
             <label for="">zipCode</label>
             <input type="text" name="" id="zipCode" required>
         </div>
-
+        <div style="max-width: 325px; margin: 0 auto;">
+            <div  style="display: flex; gap: 20px;">
+            <button style="padding: 20px 5; background-color: green; cursor: pointer;">Inserir</button>
+            <div  style="display: flex; gap: 20px;">
+            <button  style="padding: 20px 5; background-color: green; cursor: pointer;">Alterar</button>
+            <input type="text" name="" id="">
+            </div>
+            </div>
+        </div>
         <div>
 
-         <center>
-            <button style="padding: 20px 5; background-color: green; cursor: pointer;">Inserir</button>
-        </center>
+        
     </div>  
     </div>
     <center>
     <h1>VER USUÁRIOS</h1>
+    <div style="margin-bottom: 10px;">
+     <label for="" >Id</label>
+    <input type="text" name="" id="buscarPorId">
+    </div>
+    <div style="margin-bottom: 10px;">
+        <label for="" >Pagina</label>
+       <input type="text" name="" id="buscarPorPagina">
+       </div>
     <button onclick="userService.GetUsers()" style="padding: 20px 5; background-color: green; cursor: pointer;">VER JSON DE USUARIOS NO CONSOLE</button>
     </center>
 </body>

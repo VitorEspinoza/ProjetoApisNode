@@ -75,12 +75,39 @@ class UserService {
         }
     }
     GetUsers() {
-        fetch('http://localhost:3000/api/v1/users/')
+      
+        const id = (document.getElementById("buscarPorId") as HTMLInputElement).value;
+        const page = (document.getElementById("buscarPorPagina") as HTMLInputElement).value;
+        console.log(id);
+        console.log(page);
+        console.log('http://localhost:3000/api/v1/users/?page=' + page)
+        if (id != '') {
+            console.log("ENTROU NO DO ID")
+            fetch('http://localhost:3000/api/v1/users/' + id)
+            .then(res => res.json())
+            .then(data => {
+            
+            console.log(data);
+        })
+        }
+        else if (page != '') {
+            console.log("ENTROU NO DO PAGE")
+            fetch('http://localhost:3000/api/v1/users/?page=' + page)
+            .then(res => res.json())
+            .then(data => {
+            console.log(data);
+        })
+        }
+        else {
+            console.log("ENTROU NO DO Q FALTA")
+            fetch('http://localhost:3000/api/v1/users/')
             .then(res => res.json())
             .then(data => {
             console.clear();
             console.log(data);
         });
+        } 
+        
     }
 }
 
