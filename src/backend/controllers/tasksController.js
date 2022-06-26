@@ -7,14 +7,14 @@ class TaskController {
         Tasks.find()
             .skip((page * perPage) - perPage)
             .limit(perPage)
-            .populate('user')
+            /* .populate('user') */
             .exec((err, tasks) => {
                 Tasks.count().exec((err, count) => {
                     res.set({'Access-Control-Allow-Origin': '*'})
                     res.status(200).send({
                         tasks: tasks,
                         page: page,
-                        pages: count / perPage,
+                        pages: Math.ceil(count / perPage),
                         totalRecords: count
                     })
                 })       
@@ -23,9 +23,8 @@ class TaskController {
 
     static getTasksById = (req, res) => {
         const { id } = req.params;
-        res.set({'Access-Control-Allow-Origin': '*'})
         Tasks.findById(id)
-            .populate('users', 'name')
+            /* .populate('user') */
             .exec((err, task) => {
                 if(err) {
                     res.status(404).send({message: `${err.message} - Task no found`})

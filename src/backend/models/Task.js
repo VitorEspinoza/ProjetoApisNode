@@ -8,6 +8,6 @@ const taskSchema = new mongoose.Schema (
     }
 );
 
-const tasks = mongoose.models('tasks', taskSchema);
+const tasks = mongoose.model('tasks', taskSchema);
 
 export default tasks;
