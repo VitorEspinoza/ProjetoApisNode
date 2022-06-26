@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSUME API TASK</title>
+</head>
+<body>
+    <h1 style="text-align:center;">INSERT TASK</h1>
+    <div style="display: flex; flex-direction:column; gap: 15px;">      
+        
+        <div style="margin:0 auto; display: flex; flex-direction: column; text-align: center;">
+            <label for="">Description</label>
+            <textarea name="" id="description" cols="30" rows="2" required></textarea>
+            <!-- <input type="text" name="" id="Description" required> -->
+        </div>
+        <div style="margin:0 auto;">
+            <label for="">Date</label>
+            <input type="datetime-local" name="" id="date" required>
+        </div>
+        <div style="margin:0 auto;">
+            <label for="">User</label>
+            <input type="text" name="" id="user" required>
+        </div>
+        <div>
+        </div>
+        <div style="max-width: 325px; margin: 0 auto;">
+            <div  style="display: flex; gap: 20px;">
+                <button style="padding: 20px 5; background-color: green; cursor: pointer;">Insert</button>
+                <div  style="display: flex; gap: 20px;">
+                    <button  style="padding: 20px 5; background-color: green; cursor: pointer;">Change</button>
+                    <button  style="padding: 20px 5; background-color: green; cursor: pointer;">Delete</button>
+                    <label for="">Id</label>
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+        </div>
+        <div>
+
+        
+    </div>  
+    </div>
+    <center>
+    <h1>SEE TASKS</h1>
+    <div style="margin-bottom: 10px;">
+     <label for="" >Id</label>
+    <input type="text" name="" id="buscarPorId">
+    </div>
+    <div style="margin-bottom: 10px;">
+        <label for="" >Page</label>
+       <input type="text" name="" id="buscarPorPagina">
+       </div>
+    <button onclick="userService.GetUsers()" style="padding: 20px 5; background-color: green; cursor: pointer;">VIEW USERS JSON IN CONSOLE</button>
+    </center>
+</body>
+<!-- <script src="../dist/services/userService.js"></script> -->
+<script>
+    /* var userService = new UserService() */
+</script>
+</body>
+</html>

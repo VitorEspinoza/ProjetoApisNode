@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "tsc"
+    "compile": "tsc -w"
   },
   "keywords": [],
   "author": "",
