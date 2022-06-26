@@ -9,6 +9,7 @@ class UserController {
             .skip((page * perPage) - perPage)
             .limit(perPage).exec(function(err, users) {
                 Users.count().exec(function(err, count) {
+                    res.set({'Access-Control-Allow-Origin': '*'})
                     res.status(200).send({
                         users: users,
                         page: page,

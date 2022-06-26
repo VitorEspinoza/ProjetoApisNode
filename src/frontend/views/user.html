@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1 style="text-align:center;">INSERIR USUARIO</h1>
-    <div style="max-width: 900px; display: flex; flex-direction:column; gap: 15px;justify-content: center; flex-shrink: 1;">      
+    <div style="display: flex; flex-direction:column; gap: 15px;">      
         
         <div style="margin:0 auto;">
             <label for="">name</label>
@@ -74,6 +74,13 @@
         </center>
     </div>  
     </div>
-    
+    <center>
+    <h1>VER USUÁRIOS</h1>
+    <button onclick="userService.GetUsers()" style="padding: 20px 5; background-color: green; cursor: pointer;">VER JSON DE USUARIOS NO CONSOLE</button>
+    </center>
 </body>
+<script src="../dist/services/userService.js"></script>
+<script>
+    var userService = new UserService()
+</script>
 </html>
