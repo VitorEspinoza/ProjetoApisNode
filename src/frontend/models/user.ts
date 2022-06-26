@@ -1,17 +1,17 @@
 export class User {
-    id: string;
-    name: string;
-    cpf: string;
-    birthDate: Date;
-    email: string;
-    password: string;
-    address: string;
-    number: string;
-    complement: string;
-    city: string;
-    state: string;
-    country: string;
-    zipCode: string;
+    constructor(
+        public name: string, 
+        public cpf: string,
+        public  birthdate: Date, 
+        public  email: string, 
+        public  password: string, 
+        public  address: string, 
+        public  number: string, 
+        public  complement: string, 
+        public  city: string, 
+        public  state: string, 
+        public  country: string, 
+        public  zipcode: string, 
+    ) {}
+  
 }
-
-

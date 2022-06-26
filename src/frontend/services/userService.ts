@@ -1,25 +1,27 @@
+const User = require('../models/user')
 class UserService {
      AddUser(){
-        var user;
-
-        user.name = (document.getElementById("name") as HTMLInputElement).value;
-        user.cpf = (document.getElementById("cpf") as HTMLInputElement).value;
-        user.birthDate = new Date((document.getElementById("birthdate") as HTMLInputElement).value);
-        user.email = (document.getElementById("email") as HTMLInputElement).value;
-        user.password = (document.getElementById("password") as HTMLInputElement).value;
-        user.address = (document.getElementById("addres") as HTMLInputElement).value;
-        user.number = (document.getElementById("number") as HTMLInputElement).value;
-        user.complement = (document.getElementById("complement") as HTMLInputElement).value;
-        user.city = (document.getElementById("city") as HTMLInputElement).value;
-        user.state = (document.getElementById("state") as HTMLInputElement).value;
-        user.country = (document.getElementById("country") as HTMLInputElement).value;
-        user.zipCode = (document.getElementById("zipCode") as HTMLInputElement).value;
+      
+        var name = (document.getElementById("name") as HTMLInputElement).value;
+        var cpf = (document.getElementById("cpf") as HTMLInputElement).value;
+        var birthdate = new Date((document.getElementById("birthdate") as HTMLInputElement).value);
+        var email = (document.getElementById("email") as HTMLInputElement).value;
+        var password = (document.getElementById("password") as HTMLInputElement).value;
+        var address = (document.getElementById("addres") as HTMLInputElement).value;
+        var number = (document.getElementById("number") as HTMLInputElement).value;
+        var complement = (document.getElementById("complement") as HTMLInputElement).value;
+        var city = (document.getElementById("city") as HTMLInputElement).value;
+        var state = (document.getElementById("state") as HTMLInputElement).value;
+        var country = (document.getElementById("country") as HTMLInputElement).value;
+        var zipcode = (document.getElementById("zipCode") as HTMLInputElement).value;
   
+        var user = new User(name, cpf, birthdate, email, password, address, number, complement, city, state, country, zipcode);
+        
         var error = isValidCPF(user.cpf);
         
         error = validEmail.test(user.email);
         
-        error = CalculateAge(user.birthDate);
+        error = CalculateAge(user.birthdate);
         
         if(error == false){
             fetch("http://localhost:3000/api/v1/user", {
@@ -74,15 +76,12 @@ class UserService {
                 return false
         }
     }
+
     GetUsers() {
       
         const id = (document.getElementById("buscarPorId") as HTMLInputElement).value;
         const page = (document.getElementById("buscarPorPagina") as HTMLInputElement).value;
-        console.log(id);
-        console.log(page);
-        console.log('http://localhost:3000/api/v1/users/?page=' + page)
         if (id != '') {
-            console.log("ENTROU NO DO ID")
             fetch('http://localhost:3000/api/v1/users/' + id)
             .then(res => res.json())
             .then(data => {
@@ -91,7 +90,6 @@ class UserService {
         })
         }
         else if (page != '') {
-            console.log("ENTROU NO DO PAGE")
             fetch('http://localhost:3000/api/v1/users/?page=' + page)
             .then(res => res.json())
             .then(data => {
@@ -99,7 +97,6 @@ class UserService {
         })
         }
         else {
-            console.log("ENTROU NO DO Q FALTA")
             fetch('http://localhost:3000/api/v1/users/')
             .then(res => res.json())
             .then(data => {
@@ -109,6 +106,7 @@ class UserService {
         } 
         
     }
+    
 }
 
                 
