@@ -7,7 +7,7 @@
     <title>CONSUMIR API USER</title>
 </head>
 <body>
-    <h1 style="text-align:center;">INSERIR USUARIO</h1>
+    <h1 style="text-align:center;">INSERIR, ALTERAR OU DELETAR USUARIO</h1>
     <div style="display: flex; flex-direction:column; gap: 15px;">      
         
         <div style="margin:0 auto;">
@@ -71,7 +71,8 @@
             <button style="padding: 20px 5; background-color: green; cursor: pointer;" onclick="userService.AddUser()">Inserir</button>
             <div  style="display: flex; gap: 20px;">
             <button  style="padding: 20px 5; background-color: green; cursor: pointer;" onclick="userService.UpdateUser()">Alterar</button>
-            <input type="text" name="" id="idAlterarUsuario">
+            <button  style="padding: 20px 5; background-color: green; cursor: pointer;" onclick="userService.DeleteUser()">Deletar</button>
+            <input type="text" name="" id="idUsuario">
             </div>
             </div>
         </div>
@@ -93,7 +94,7 @@
     <button onclick="userService.GetUsers()" style="padding: 20px 5; background-color: green; cursor: pointer;">VER JSON DE USUARIOS NO CONSOLE</button>
     </center>
 </body>
-<script src="../dist/services/userService.js"></script>
+<script  src="../dist/services/userService.js"></script>
 <script>
     var userService = new UserService()
 </script>
