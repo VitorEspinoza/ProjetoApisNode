@@ -1,68 +1,67 @@
-const User = require('../models/user');
+// import { User } from '../models/user.js'
 class UserService {
-    AddUser() {
-        var name = document.getElementById("name").value;
-        var cpf = document.getElementById("cpf").value;
-        var birthdate = new Date(document.getElementById("birthdate").value);
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        var address = document.getElementById("addres").value;
-        var number = document.getElementById("number").value;
-        var complement = document.getElementById("complement").value;
-        var city = document.getElementById("city").value;
-        var state = document.getElementById("state").value;
-        var country = document.getElementById("country").value;
-        var zipcode = document.getElementById("zipCode").value;
-        var user = new User(name, cpf, birthdate, email, password, address, number, complement, city, state, country, zipcode);
-        var error = isValidCPF(user.cpf);
-        error = validEmail.test(user.email);
-        error = CalculateAge(user.birthdate);
-        if (error == false) {
-            fetch("http://localhost:3000/api/v1/user", {
-                method: "POST",
-                body: JSON.stringify(user),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            })
-                .then(response => response.json())
-                .then(json => console.log(json));
-        }
-        var validEmail = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-        function isValidCPF(cpf) {
-            if (typeof cpf !== 'string')
-                return false;
-            cpf = cpf.replace(/[^\d]+/g, '');
-            if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/))
-                return false;
-            cpf = cpf.split('');
-            const validator = cpf
-                .filter((digit, index, array) => index >= array.length - 2 && digit)
-                .map(el => +el);
-            const toValidate = pop => cpf
-                .filter((digit, index, array) => index < array.length - pop && digit)
-                .map(el => +el);
-            const rest = (count, pop) => (toValidate(pop)
-                .reduce((soma, el, i) => soma + el * (count - i), 0) * 10) % 11 % 10;
-            return !(rest(10, 2) !== validator[0] || rest(11, 1) !== validator[1]);
-        }
-        function CalculateAge(date) {
-            const DayBirthday = date.getDay();
-            const monthBirthday = date.getMonth();
-            const yearBirthday = date.getFullYear();
-            let actualYear = new Date().getFullYear();
-            let actualMonth = new Date().getMonth();
-            let actualDay = new Date().getDate();
-            var diferenceYears = actualYear - yearBirthday;
-            if (new Date(actualYear, actualMonth + 1, actualDay) <
-                new Date(actualYear, monthBirthday, DayBirthday)) {
-                diferenceYears--;
-            }
-            if (diferenceYears >= 18)
-                return true;
-            return false;
-        }
-    }
+    //      AddUser(){
+    //         var name = (document.getElementById("name") as HTMLInputElement).value;
+    //         var cpf = (document.getElementById("cpf") as HTMLInputElement).value;
+    //         var birthdate = new Date((document.getElementById("birthdate") as HTMLInputElement).value);
+    //         var email = (document.getElementById("email") as HTMLInputElement).value;
+    //         var password = (document.getElementById("password") as HTMLInputElement).value;
+    //         var address = (document.getElementById("addres") as HTMLInputElement).value;
+    //         var number = (document.getElementById("number") as HTMLInputElement).value;
+    //         var complement = (document.getElementById("complement") as HTMLInputElement).value;
+    //         var city = (document.getElementById("city") as HTMLInputElement).value;
+    //         var state = (document.getElementById("state") as HTMLInputElement).value;
+    //         var country = (document.getElementById("country") as HTMLInputElement).value;
+    //         var zipcode = (document.getElementById("zipCode") as HTMLInputElement).value;
+    //         var user = new User(name, cpf, birthdate, email, password, address, number, complement, city, state, country, zipcode);
+    //         var error = isValidCPF(user.cpf);
+    //         error = validEmail.test(user.email);
+    //         error = CalculateAge(user.birthdate);
+    //         if(error == false){
+    //             fetch("http://localhost:3000/api/v1/user", {
+    //                     method: "POST",
+    //                     body: JSON.stringify(user),
+    //                     headers: {
+    //                         "Content-type": "application/json; charset=UTF-8"
+    //                     }
+    //             })
+    //             .then(response => response.json())
+    //             .then(json => console.log(json));
+    //         }
+    //         var validEmail = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    //         function isValidCPF(cpf) {
+    //             if (typeof cpf !== 'string') return false
+    //             cpf = cpf.replace(/[^\d]+/g, '')
+    //             if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false
+    //             cpf = cpf.split('')
+    //             const validator = cpf
+    //                 .filter((digit, index, array) => index >= array.length - 2 && digit)
+    //                 .map( el => +el )
+    //             const toValidate = pop => cpf
+    //                 .filter((digit, index, array) => index < array.length - pop && digit)
+    //                 .map(el => +el)
+    //             const rest = (count, pop) => (toValidate(pop)
+    //                 .reduce((soma, el, i) => soma + el * (count - i), 0) * 10) % 11 % 10
+    //             return !(rest(10,2) !== validator[0] || rest(11,1) !== validator[1])
+    //         }
+    //         function CalculateAge(date) {
+    //             const DayBirthday = date.getDay();
+    //             const monthBirthday = date.getMonth(); 
+    //             const yearBirthday = date.getFullYear();
+    //             let actualYear = new Date().getFullYear();
+    //             let actualMonth = new Date().getMonth();
+    //             let actualDay = new Date().getDate();
+    //             var diferenceYears = actualYear - yearBirthday;
+    //             if( new Date(actualYear, actualMonth + 1, actualDay) < 
+    //                 new Date(actualYear, monthBirthday, DayBirthday))
+    //                 {
+    //                     diferenceYears--;  
+    //                 }   
+    //                 if (diferenceYears >= 18)
+    //                     return true
+    //                 return false
+    //         }
+    //    }
     GetUsers() {
         const id = document.getElementById("buscarPorId").value;
         const page = document.getElementById("buscarPorPagina").value;

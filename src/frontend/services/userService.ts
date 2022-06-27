@@ -1,4 +1,4 @@
-const User = require('../models/user')
+import { User } from '../models/user.js'
 class UserService {
      AddUser(){
       
@@ -75,7 +75,7 @@ class UserService {
         
                 return false
         }
-    }
+   }
 
     GetUsers() {
       
