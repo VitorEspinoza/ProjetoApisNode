@@ -1,7 +1,7 @@
 import express  from "express";
 import db from "./backend/config/dbConnect.js";
-import routes from "./backend/routes/index.js"
-
+import routes from "./backend/routes/index.js";
+import cors from "cors";
 
 db.on("error", console.log.bind(console, 'Erro de Conexão'));
 db.once("open",() => {
@@ -9,7 +9,11 @@ db.once("open",() => {
 });
 
 const app = express();
-app.use(express.json())
+app.use(
+    cors({origin: '*'}),
+    express.json()
+)
+
 routes(app);
 
 export default app;

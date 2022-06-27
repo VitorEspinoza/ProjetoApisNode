@@ -7,27 +7,26 @@ class TaskController {
         Tasks.find()
             .skip((page * perPage) - perPage)
             .limit(perPage)
-            /* .populate('user') */
+            .populate('user')
             .exec((err, tasks) => {
                 Tasks.count().exec((err, count) => {
-                    res.set({'Access-Control-Allow-Origin': '*'})
                     res.status(200).send({
                         tasks: tasks,
                         page: page,
                         pages: Math.ceil(count / perPage),
                         totalRecords: count
                     })
-                })       
-            }) 
+                })
+            })
     }
 
     static getTasksById = (req, res) => {
         const { id } = req.params;
         Tasks.findById(id)
-            /* .populate('user') */
+            .populate('user')
             .exec((err, task) => {
-                if(err) {
-                    res.status(404).send({message: `${err.message} - Task no found`})
+                if (err) {
+                    res.status(404).send({ message: `${err.message} - Task no found` })
                 } else {
                     res.status(200).send(task);
                 }
@@ -37,36 +36,36 @@ class TaskController {
     static addTask = (req, res) => {
         let task = new Tasks(req.body);
         task.save((err) => {
-            if(err) {
-                res.status(500).send({message: `${err.message} - failure to register task`})
+            if (err) {
+                res.status(500).send({ message: `${err.message} - failure to register task` })
             } else {
-                res.status(201).send({message: 'Task successfully registered'})
+                res.status(201).send({ message: 'Task successfully registered' })
             }
         })
     }
 
     static updateTask = (req, res) => {
-        const {id} = req.params;
-        Tasks.findByIdAndUpdate(id, {$set: req.body}, (err) => {
-            if(err) {
-                res.status(404).send({message: `${err.message} - Task not found`})
+        const { id } = req.params;
+        Tasks.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+            if (err) {
+                res.status(404).send({ message: `${err.message} - Task not found` })
             } else {
-                res.status(200).send({message: 'Task successfully updated'})
+                res.status(200).send({ message: 'Task successfully updated' })
             }
         })
     }
 
     static deleteTask = (req, res) => {
-        const {id} = req.params;
+        const { id } = req.params;
         Tasks.findByIdAndDelete(id, (err) => {
-            if(err) {
-                res.status(404).send({message: `${err.message} - Task not found`})
+            if (err) {
+                res.status(404).send({ message: `${err.message} - Task not found` })
             } else {
-                res.status(204).send({message: 'Task successfully removed'})
+                res.status(204).send({ message: 'Task successfully removed' })
             }
         })
     }
-    
+
 }
 
 export default TaskController
