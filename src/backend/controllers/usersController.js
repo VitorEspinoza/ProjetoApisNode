@@ -35,6 +35,7 @@ class UserController {
 
     static addUser = (req, res) => {
         let user = new Users(req.body);
+        res.set({'Access-Control-Allow-Origin': '*'})
         user.save((err) => {
             if(err)
             {
@@ -47,6 +48,7 @@ class UserController {
 
     static updateUser = (req, res) => {
         const {id} = req.params;
+        res.set({'Access-Control-Allow-Origin': '*'})
         Users.findByIdAndUpdate(id, {$set: req.body}, (err) => {
             if(err)
             {
@@ -60,6 +62,7 @@ class UserController {
 
     static deleteUser = (req, res) => {
         const {id} = req.params;
+        res.set({'Access-Control-Allow-Origin': '*'})
         Users.findByIdAndDelete(id, (err) => {
             if (err) {
                 res.status(500).send({message: `${err.message} - User not found`})
