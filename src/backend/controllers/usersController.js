@@ -12,7 +12,7 @@ class UserController {
                     res.status(200).send({
                         users: users,
                         page: page,
-                        pages: count / perPage,
+                        pages: Math.ceil(count / perPage),
                         totalRecords: count
                     })
                 })
